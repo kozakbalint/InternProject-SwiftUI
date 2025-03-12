@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E05BA6712D819B4500352E2E /* TmdbNetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = E05BA6702D819B4500352E2E /* TmdbNetworkManager */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		E05BA65B2D81991700352E2E /* SwiftUIInternProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIInternProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E05BA6712D819B4500352E2E /* TmdbNetworkManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = SwiftUIInternProject;
 			packageProductDependencies = (
+				E05BA6702D819B4500352E2E /* TmdbNetworkManager */,
 			);
 			productName = SwiftUIInternProject;
 			productReference = E05BA65B2D81991700352E2E /* SwiftUIInternProject.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = E05BA6522D81991700352E2E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E05BA66F2D819B4500352E2E /* XCRemoteSwiftPackageReference "TmdbNetworkManager" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E05BA65C2D81991700352E2E /* Products */;
 			projectDirPath = "";
@@ -324,6 +333,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E05BA66F2D819B4500352E2E /* XCRemoteSwiftPackageReference "TmdbNetworkManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kozakbalint/TmdbNetworkManager";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E05BA6702D819B4500352E2E /* TmdbNetworkManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E05BA66F2D819B4500352E2E /* XCRemoteSwiftPackageReference "TmdbNetworkManager" */;
+			productName = TmdbNetworkManager;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E05BA6532D81991700352E2E /* Project object */;
 }
