@@ -14,7 +14,7 @@ struct MainView: View {
             List {
                 ForEach(viewModel.filteredMovies, id: \.id) { movie in
                     NavigationLink {
-                        //TODO: Details page
+                        DetailView(movie: movie)
                     } label: {
                         MovieListEntry(movie: movie)
                     }
