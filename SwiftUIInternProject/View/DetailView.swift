@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct DetailView: View {
-    @State private var showingSheet: Bool = false
-    let movie: Movie
+    @ObservedObject var viewModel: DetailViewModel
+    
+    init(movie: Movie) {
+        viewModel = DetailViewModel(movie: movie)
+    }
+    
     var body: some View {
         VStack {
-            AsyncImage(url: movie.posterURL) { image in
+            AsyncImage(url: viewModel.movie.posterURL) { image in
                 image
                     .resizable()
                     .scaledToFit()
@@ -20,25 +24,25 @@ struct DetailView: View {
                 ProgressView()
             }
 
-            Text(movie.title ?? "")
+            Text(viewModel.movie.title ?? "")
                 .font(.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(movie.overview ?? "")
+            Text(viewModel.movie.overview ?? "")
         }
         .padding()
-        .navigationTitle(movie.title ?? "")
+        .navigationTitle(viewModel.movie.title ?? "")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    showingSheet = true
+                    viewModel.isSheetPresented = true
                 } label: {
                     Image(systemName: "star")
                 }
             }
         }
-        .sheet(isPresented: $showingSheet) {
-            RatingView(movieId: movie.id)
+        .sheet(isPresented: $viewModel.isSheetPresented) {
+            RatingView(movieId: viewModel.movie.id)
         }
     }
 }

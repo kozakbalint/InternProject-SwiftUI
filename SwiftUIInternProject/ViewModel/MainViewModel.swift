@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 class MainViewModel: ObservableObject {
-    @Published var movies = [Movie]()
+    private var movies = [Movie]()
     @Published var filteredMovies: [Movie] = []
     @Published var genreFilters: Set<Genre> = []
     @Published var searchText: String = ""
