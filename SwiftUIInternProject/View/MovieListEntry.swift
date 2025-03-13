@@ -8,30 +8,33 @@
 import SwiftUI
 
 struct MovieListEntry: View {
-    let movie: Movie
-    let cellHeight: CGFloat = 120
+    @ObservedObject var viewModel: MovieListEntryViewModel
+    
+    init(movie: Movie) {
+        viewModel = MovieListEntryViewModel(movie: movie)
+    }
     
     var body: some View {
         VStack {
             HStack(spacing: 50) {
-                AsyncImage(url: movie.posterURL) { image in
+                AsyncImage(url: viewModel.posterUrl) { image in
                     image
                         .resizable()
                         .scaledToFill()
                 } placeholder: {
                     ProgressView()
                 }
-                .frame(width: 25, height: cellHeight)
+                .frame(width: 25, height: viewModel.cellHeight)
                 
                 VStack(alignment: .leading) {
-                    Text(movie.title ?? "")
+                    Text(viewModel.title)
                         .font(.title)
                     Spacer()
-                    Text(movie.releaseYear ?? "")
+                    Text(viewModel.releaseYear)
                         .font(.title3)
                         .foregroundStyle(.secondary)
                 }
-                .frame(height: cellHeight, alignment: .top)
+                .frame(height: viewModel.cellHeight, alignment: .top)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal)
@@ -41,4 +44,5 @@ struct MovieListEntry: View {
 
 #Preview {
     MovieListEntry(movie: .example)
+        .padding()
 }

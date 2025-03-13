@@ -12,9 +12,14 @@ import TmdbNetworkManager
 class RatingViewModel: ObservableObject {
     @Published var rating: Int = 0
     @Published var success: Bool = false
+    private var movieId: Int
     private var cancellables: Set<AnyCancellable> = []
     
-    func sendRating(movieId: Int, rating: Int) {
+    init(movieId: Int) {
+        self.movieId = movieId
+    }
+    
+    func sendRating(rating: Int) {
         NetworkManager.shared.addRatingToMovie(movieId: movieId, value: Double(rating))
             .receive(on: DispatchQueue.main)
             .sink { completion in

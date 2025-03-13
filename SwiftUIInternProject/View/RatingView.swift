@@ -9,8 +9,11 @@ import SwiftUI
 
 public struct RatingView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel = RatingViewModel()
-    let movieId: Int
+    @ObservedObject var viewModel: RatingViewModel
+    
+    init(movieId: Int) {
+        viewModel = RatingViewModel(movieId: movieId)
+    }
     
     public var body: some View {
         VStack(spacing: 15) {
@@ -29,7 +32,7 @@ public struct RatingView: View {
                 }
             }
             Button("Send rating: \(viewModel.rating)") {
-                viewModel.sendRating(movieId: movieId, rating: viewModel.rating)
+                viewModel.sendRating(rating: viewModel.rating)
             }
             .buttonStyle(.borderedProminent)
             
