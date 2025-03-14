@@ -5,6 +5,7 @@
 //  Created by Balint Kozak on 2025. 03. 12..
 //
 
+import Kingfisher
 import SwiftUI
 
 struct MovieListEntry: View {
@@ -17,13 +18,12 @@ struct MovieListEntry: View {
     var body: some View {
         VStack {
             HStack(spacing: 50) {
-                AsyncImage(url: viewModel.posterUrl) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                } placeholder: {
-                    ProgressView()
-                }
+                KFImage(viewModel.posterUrl)
+                    .placeholder({
+                        ProgressView()
+                    })
+                    .resizable()
+                    .scaledToFill()
                 .frame(width: 25, height: viewModel.cellHeight)
                 
                 VStack(alignment: .leading) {
