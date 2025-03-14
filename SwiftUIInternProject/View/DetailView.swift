@@ -5,6 +5,7 @@
 //  Created by Balint Kozak on 2025. 03. 12..
 //
 
+import Kingfisher
 import SwiftUI
 
 struct DetailView: View {
@@ -16,13 +17,12 @@ struct DetailView: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: viewModel.movie.posterURL) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-            } placeholder: {
-                ProgressView()
-            }
+            KFImage(viewModel.movie.posterURL)
+                .placeholder({
+                    ProgressView()
+                })
+                .resizable()
+                .scaledToFit()
 
             Text(viewModel.movie.title ?? "")
                 .font(.title)
