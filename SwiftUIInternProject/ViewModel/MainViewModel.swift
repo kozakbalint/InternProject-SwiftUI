@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class MainViewModel: ObservableObject {
+final class MainViewModel: ObservableObject {
     private var movies = [Movie]()
     @Published var filteredMovies: [Movie] = []
     @Published var genreFilters: Set<Genre> = []
@@ -39,8 +39,8 @@ class MainViewModel: ObservableObject {
         if searchText.isEmpty {
             filteredMovies = filteredMovies.isEmpty ? movies : filteredMovies
         } else {
-            filteredMovies = filteredMovies.filter { movie in
-                let title = movie.title ?? ""
+            filteredMovies = filteredMovies.filter {
+                let title = $0.title ?? ""
                 return title.localizedStandardContains(searchText)
             }
         }
@@ -52,8 +52,8 @@ class MainViewModel: ObservableObject {
             return
         }
         
-        filteredMovies = movies.filter { movie in
-            let movieGenres = Set(movie.genres)
+        filteredMovies = movies.filter {
+            let movieGenres = Set($0.genres)
             
             return !movieGenres.intersection(self.genreFilters).isEmpty
         }
