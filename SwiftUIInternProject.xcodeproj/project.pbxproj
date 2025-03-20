@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E05BA6712D819B4500352E2E /* TmdbNetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = E05BA6702D819B4500352E2E /* TmdbNetworkManager */; };
 		E05BA6C92D84154800352E2E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E05BA6C82D84154800352E2E /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +28,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E05BA6C92D84154800352E2E /* Kingfisher in Frameworks */,
-				E05BA6712D819B4500352E2E /* TmdbNetworkManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +70,6 @@
 			);
 			name = SwiftUIInternProject;
 			packageProductDependencies = (
-				E05BA6702D819B4500352E2E /* TmdbNetworkManager */,
 				E05BA6C82D84154800352E2E /* Kingfisher */,
 			);
 			productName = SwiftUIInternProject;
@@ -104,7 +101,6 @@
 			mainGroup = E05BA6522D81991700352E2E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				E05BA66F2D819B4500352E2E /* XCRemoteSwiftPackageReference "TmdbNetworkManager" */,
 				E05BA6C72D84154800352E2E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -339,14 +335,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E05BA66F2D819B4500352E2E /* XCRemoteSwiftPackageReference "TmdbNetworkManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kozakbalint/TmdbNetworkManager";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		E05BA6C72D84154800352E2E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -358,11 +346,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E05BA6702D819B4500352E2E /* TmdbNetworkManager */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E05BA66F2D819B4500352E2E /* XCRemoteSwiftPackageReference "TmdbNetworkManager" */;
-			productName = TmdbNetworkManager;
-		};
 		E05BA6C82D84154800352E2E /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E05BA6C72D84154800352E2E /* XCRemoteSwiftPackageReference "Kingfisher" */;

@@ -7,7 +7,6 @@
 
 import Combine
 import Foundation
-import TmdbNetworkManager
 
 final class RatingViewModel: ObservableObject {
     @Published var rating: Int = 0

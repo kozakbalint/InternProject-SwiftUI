@@ -7,11 +7,10 @@
 
 import Combine
 import Foundation
-import TmdbNetworkManager
 
 final class NetworkManager {
     static let shared = NetworkManager()
-    private let tmdbNetworkManager: TmdbNetworkManager?
+    private let tmdbApiClient: TmdbApiClient
     
     
     private init() {
@@ -25,26 +24,37 @@ final class NetworkManager {
             fatalError("No TMDB_AUTH_TOKEN found in Tmdb.plist")
         }
         
-        self.tmdbNetworkManager = TmdbNetworkManager(apiClient: APIClient(authToken: apiKey))
+        self.tmdbApiClient = TmdbApiClient(authToken: apiKey)
     }
     
     func getPopularMovies(page: Int) -> AnyPublisher<[MovieResponse], Error> {
-        return tmdbNetworkManager?.getPopularMovies(page: page) ?? Empty<[MovieResponse], Error>().eraseToAnyPublisher()
+        return Future<[MovieResponse], Error> { promise in
+            Task {
+                let result = await self.tmdbApiClient.get(endpoint: .popularMovies(page: page), responseType: MoviesResponse.self)
+                switch result {
+                case .success(let movies):
+                    promise(.success(movies.results))
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
-    
-    func getTopRatedMovies(page: Int) -> AnyPublisher<[MovieResponse], Error> {
-        return tmdbNetworkManager?.getTopRatedMovies(page: page) ?? Empty<[MovieResponse], Error>().eraseToAnyPublisher()
-    }
-    
-    func searchMovies(query: String) -> AnyPublisher<[MovieResponse], Error> {
-        return tmdbNetworkManager?.searchMovies(query: query) ?? Empty<[MovieResponse], Error>().eraseToAnyPublisher()
-    }
-    
-    func getMovieDetails(movieId: Int) -> AnyPublisher<MovieDetailsResponse, Error> {
-        return tmdbNetworkManager?.getMovieDetails(id: movieId) ?? Empty<MovieDetailsResponse, Error>().eraseToAnyPublisher()
-    }
-    
+        
     func addRatingToMovie(movieId: Int, value: Double) -> AnyPublisher<RatingResponse, Error> {
-        return tmdbNetworkManager?.addRatingToMovie(id: movieId, value: value) ?? Empty<RatingResponse, Error>().eraseToAnyPublisher()
+        return Future<RatingResponse, Error> { promise in
+            Task {
+                let requestBody = RatingRequest(value: value)
+                let result = await self.tmdbApiClient.post(endpoint: .addRatingToMovie(id: movieId), requestBody: requestBody, responseType: RatingResponse.self)
+                switch result {
+                case .success(let response):
+                    promise(.success(response))
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

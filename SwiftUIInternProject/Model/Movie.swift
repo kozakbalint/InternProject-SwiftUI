@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import TmdbNetworkManager
 
 struct Movie: Codable, Identifiable {
     let adult: Bool
@@ -54,28 +53,6 @@ struct Movie: Codable, Identifiable {
         self.video = movieResponse.video
         self.voteAverage = movieResponse.voteAverage
         self.voteCount = movieResponse.voteCount
-    }
-    
-    init(from movieDetailsResponse: MovieDetailsResponse) {
-        self.adult = movieDetailsResponse.adult
-        self.backdropPath = movieDetailsResponse.backdropPath
-        self.id = movieDetailsResponse.id
-        self.originalLanguage = movieDetailsResponse.originalLanguage
-        self.originalTitle = movieDetailsResponse.originalTitle
-        self.overview = movieDetailsResponse.overview
-        self.popularity = movieDetailsResponse.popularity
-        self.posterPath = movieDetailsResponse.posterPath
-        self.releaseDate = movieDetailsResponse.releaseDate
-        self.title = movieDetailsResponse.title
-        self.video = movieDetailsResponse.video
-        self.voteAverage = movieDetailsResponse.voteAverage
-        self.voteCount = movieDetailsResponse.voteCount
-        
-        if let genres = movieDetailsResponse.genres {
-            self.genres = genres.map { Genre(rawValue: $0.id) ?? .unknown }
-        } else {
-            self.genres = []
-        }
     }
 }
 
