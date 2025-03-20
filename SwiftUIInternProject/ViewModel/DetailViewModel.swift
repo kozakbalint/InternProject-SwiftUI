@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DetailViewModel: ObservableObject {
+final class DetailViewModel: ObservableObject {
     @Published var movie: Movie
     @Published var isSheetPresented: Bool = false
     

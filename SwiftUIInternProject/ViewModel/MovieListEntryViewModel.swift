@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieListEntryViewModel: ObservableObject {
+final class MovieListEntryViewModel: ObservableObject {
     @Published var title: String
     @Published var releaseYear: String
     @Published var posterUrl: URL?
